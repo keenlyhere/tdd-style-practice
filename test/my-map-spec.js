@@ -14,6 +14,7 @@ describe("myMap", function() {
 
     beforeEach(() => {
         array = new Array(1, 2, 3)
+        // console.log(array)
     });
     it("should mimic the built-in Array.map", function() {
         let result1 = myMap(array, (el) => el *= 2);
@@ -33,11 +34,13 @@ describe("myMap", function() {
         expect(mapSpy).to.have.not.been.called();
     });
 
-    it("should invoke the passed-in callback once for each element in the passed-in array argument")
-        // let cb = (el) => el *= 2;
-        let spy = chai.spy((el) => el *= 2)
+    it("should invoke the passed-in callback once for each element in the passed-in array argument", () => {
+        const cb = (el) => el *= 2;
+        const spy = chai.spy(cb)
         myMap([1, 2, 3], spy)
-        expect(spy).to.have.been.called()
+        expect(spy).to.have.been.called.exactly(3)
+    })
+
 
 
 });
